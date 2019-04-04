@@ -518,6 +518,16 @@ Markdown 是什么？Markdown 是一种轻量级标记语言，它以纯文本�
 <pre><code>`ctrl+a`
 </code></pre><p>效果：</p>
 <p><code>ctrl+a</code></p>
+<pre class=" language-js"><code class="language-js"><span class="token keyword">function</span> <span class="token function">strict</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token comment" spellcheck="true">// 函数级别严格模式语法</span>
+  <span class="token string">"use strict"</span><span class="token punctuation">;</span>
+  <span class="token keyword">return</span> <span class="token string">"I'm a strict mode function!  "</span> <span class="token operator">+</span> <span class="token function">nested</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">function</span> <span class="token function">notStrict</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">return</span> <span class="token string">"I'm not strict."</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre>
 <h3 id="尝试一下"><a href="#尝试一下" class="headerlink" title="尝试一下"></a>尝试一下</h3><ul>
 <li>Chrome 下的插件诸如 stackedit 与 markdown-here 等非常方便，也不用担心平台受限。</li>
 <li>在线的 dillinger.io 评价也不错</li>
