@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<search> 
+  
+  
+    
+    <entry>
+      <title>初次搭建博客</title>
+      <link href="/2019/04/02/chu-ci-da-jian-bo-ke/"/>
+      <url>/2019/04/02/chu-ci-da-jian-bo-ke/</url>
+      
+        <content type="html"><![CDATA[<h1 id="Fir"><a href="#Fir" class="headerlink" title="Fir"></a>Fir</h1><p>根据教程简单搭建下自己的博客,第一次,就写下工作中偶尔用到的 md 文件吧</p><h3 id="Markdown-是什么？"><a href="#Markdown-是什么？" class="headerlink" title="Markdown 是什么？"></a>Markdown 是什么？</h3><p>Markdown 是一种轻量级标记语言，它以纯文本形式(易读、易写、易更改)编写文档，并最终以 HTML 格式发布。<br>Markdown 也可以理解为将以 MARKDOWN 语法编写的语言转换成 HTML 内容的工具。</p><h3 id="谁创造了它？"><a href="#谁创造了它？" class="headerlink" title="谁创造了它？"></a>谁创造了它？</h3><p>它由 Aaron Swartz 和 John Gruber 共同设计，Aaron Swartz 就是那位于去年（2013 年 1 月 11 日）自杀,有着开挂一般人生经历的程序员。维基百科对他的介绍是：软件工程师、作家、政治组织者、互联网活动家、维基百科人。<br>他有着足以让你跪拜的人生经历：</p><ul><li>14 岁参与 RSS 1.0 规格标准的制订。</li><li>2004 年入读斯坦福，之后退学。</li><li>2005 年创建 Infogami，之后与 Reddit 合并成为其合伙人。</li><li>2010 年创立求进会（Demand Progress），积极参与禁止网络盗版法案（SOPA）活动， 最终该提案被撤回。</li><li>2011 年 7 月 19 日，因被控从 MIT 和 JSTOR 下载 480 万篇学术论文并以免费形式 上传于网络被捕。</li><li>2013 年 1 月自杀身亡。</li></ul><h3 id="为什么要使用它？"><a href="#为什么要使用它？" class="headerlink" title="为什么要使用它？"></a>为什么要使用它？</h3><ul><li>它是易读（看起来舒服）、易写（语法简单）、易更改纯文本。处处体现着极简主义的影子。</li><li>兼容 HTML，可以转换为 HTML 格式发布。</li><li>跨平台使用。</li><li>越来越多的网站支持 Markdown。</li><li>更方便清晰地组织你的电子邮件。（Markdown-here, Airmail）</li><li>摆脱 Word（我不是认真的）。</li></ul><h3 id="怎么使用？"><a href="#怎么使用？" class="headerlink" title="怎么使用？"></a>怎么使用？</h3><p>如果不算扩展，Markdown 的语法绝对简单到让你爱不释手。<br>Markdown 语法主要分为如下几大部分： 标题，段落，区块引用，代码区块，强调，列表，分割线，链接，图片，反斜杠 \，符号’`’。</p><h4 id="标题"><a href="#标题" class="headerlink" title="标题"></a>标题</h4><p>两种形式：</p><ul><li><ol><li>使用=和-标记一级和二级标题。</li></ol></li></ul><pre><code>一级标题=========二级标题---------</code></pre><p>效果：</p><h1 id="一级标题"><a href="#一级标题" class="headerlink" title="一级标题"></a>一级标题</h1><h2 id="二级标题"><a href="#二级标题" class="headerlink" title="二级标题"></a>二级标题</h2><ul><li>2）使用#，可表示 1-6 级标题。</li></ul><pre><code># 一级标题## 二级标题### 三级标题#### 四级标题##### 五级标题###### 六级标题</code></pre><p>效果：</p><h1 id="一级标题-1"><a href="#一级标题-1" class="headerlink" title="一级标题"></a>一级标题</h1><h2 id="二级标题-1"><a href="#二级标题-1" class="headerlink" title="二级标题"></a>二级标题</h2><h3 id="三级标题"><a href="#三级标题" class="headerlink" title="三级标题"></a>三级标题</h3><h4 id="四级标题"><a href="#四级标题" class="headerlink" title="四级标题"></a>四级标题</h4><h5 id="五级标题"><a href="#五级标题" class="headerlink" title="五级标题"></a>五级标题</h5><h6 id="六级标题"><a href="#六级标题" class="headerlink" title="六级标题"></a>六级标题</h6><h4 id="段落"><a href="#段落" class="headerlink" title="段落"></a>段落</h4><p>段落的前后要有空行，所谓的空行是指没有文字内容。若想在段内强制换行的方式是使用两个以上空格加上回车（引用中换行省略回车）。</p><h4 id="区块引用"><a href="#区块引用" class="headerlink" title="区块引用"></a>区块引用</h4><p>在段落的每行或者只在第一行使用符号&gt;,还可使用多个嵌套引用，如：</p><pre><code>&gt; 区块引用&gt;&gt; 嵌套引用</code></pre><p>效果：</p><blockquote><p>区块引用</p><blockquote><p>嵌套引用</p></blockquote></blockquote><h4 id="代码区块"><a href="#代码区块" class="headerlink" title="代码区块"></a>代码区块</h4><p>代码区块的建立是在每行加上 4 个空格或者一个制表符（如同写代码一样）。如<br>普通段落：</p><p>export default class Page extends Component{<br>render(){<br>return(</p><p><div></div><br>)<br>}<br>}</p><p>代码区块：</p><pre><code>export default class Page extends Component{    render(){        return(            &lt;div&gt;&lt;/div&gt;        )    }}</code></pre><p>注意:需要和普通段落之间存在空行。</p><h4 id="强调"><a href="#强调" class="headerlink" title="强调"></a>强调</h4><p>在强调内容两侧分别加上*或者_，如：</p><pre><code>*斜体*，_斜体_**粗体**，__粗体__</code></pre><p>效果：</p><p>_斜体_，_斜体_<br><strong>粗体</strong>，<strong>粗体</strong></p><h4 id="列表"><a href="#列表" class="headerlink" title="列表"></a>列表</h4><p>使用·、+、或-标记无序列表，如：</p><pre><code>-（+_） 第一项 -（+_） 第二项 - （+\*）第三项</code></pre><p>注意：标记后面最少有一个<em>空格</em>或<em>制表符</em>。若不在引用区块中，必须和前方段落之间存在空行。</p><p>效果：</p><ul><li>第一项</li><li>第二项</li><li>第三项</li></ul><p>有序列表的标记方式是将上述的符号换成数字,并辅以.，如：</p><pre><code>1. 第一项2. 第二项3. 第三项</code></pre><p>效果：</p><ol><li>第一项</li><li>第二项</li><li>第三项</li></ol><h4 id="分割线"><a href="#分割线" class="headerlink" title="分割线"></a>分割线</h4><p>分割线最常使用就是三个或以上*，还可以使用-和_。</p><pre><code>- - -</code></pre><p>效果</p><hr><h4 id="链接"><a href="#链接" class="headerlink" title="链接"></a>链接</h4><p>链接可以由两种形式生成：行内式和参考式。<br>行内式：</p><pre><code>[https://juejin.im/timeline](https://juejin.im/timeline)</code></pre><p>效果<br><a href="https://juejin.im/timeline" target="_blank" rel="noopener">https://juejin.im/timeline</a></p><h4 id="图片"><a href="#图片" class="headerlink" title="图片"></a>图片</h4><p>添加图片的形式和链接相似，只需在链接的基础上前方加一个！。</p><pre><code>![Aaron_Swartz](img/20190402/Aaron_Swartz.jpg)</code></pre><h4 id="反斜杠"><a href="#反斜杠" class="headerlink" title="反斜杠\"></a>反斜杠\</h4><p>相当于反转义作用。使符号成为普通符号。</p><h4 id="符号’-’"><a href="#符号’-’" class="headerlink" title="符号’`’"></a>符号’`’</h4><p>起到标记作用。如：</p><pre><code>`ctrl+a`</code></pre><p>效果：</p><p><code>ctrl+a</code></p><h3 id="尝试一下"><a href="#尝试一下" class="headerlink" title="尝试一下"></a>尝试一下</h3><ul><li>Chrome 下的插件诸如 stackedit 与 markdown-here 等非常方便，也不用担心平台受限。</li><li>在线的 dillinger.io 评价也不错</li><li>Windowns 下的 MarkdownPad 也用过，不过免费版的体验不是很好。</li><li>Mac 下的 Mou 是国人贡献的，口碑很好。</li><li>Linux 下的 ReText 不错。</li><li>VSCode 中的 markdown 预览插件也是可以的。</li></ul><p>当然，最终境界永远都是笔下是语法，心中格式化 :)。</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> Blog </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> WEB </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+  
+  
+</search>
