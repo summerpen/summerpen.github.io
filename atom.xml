@@ -5,9 +5,9 @@
   <subtitle>summerpen</subtitle>
   <link href="/atom.xml" rel="self"/>
   
-  <link href="http://sumerpen.gethub.io/"/>
+  <link href="http://summerpen.github.io/"/>
   <updated>2019-04-04T17:22:16.528Z</updated>
-  <id>http://sumerpen.gethub.io/</id>
+  <id>http://summerpen.github.io/</id>
   
   <author>
     <name>Yun Xing</name>
@@ -18,8 +18,8 @@
   
   <entry>
     <title>初次搭建博客</title>
-    <link href="http://sumerpen.gethub.io/2019/04/02/chu-ci-da-jian-bo-ke/"/>
-    <id>http://sumerpen.gethub.io/2019/04/02/chu-ci-da-jian-bo-ke/</id>
+    <link href="http://summerpen.github.io/2019/04/02/chu-ci-da-jian-bo-ke/"/>
+    <id>http://summerpen.github.io/2019/04/02/chu-ci-da-jian-bo-ke/</id>
     <published>2019-04-01T16:00:00.000Z</published>
     <updated>2019-04-04T17:22:16.528Z</updated>
     
@@ -36,10 +36,10 @@
     
     </summary>
     
-      <category term="Blog" scheme="http://sumerpen.gethub.io/categories/Blog/"/>
+      <category term="Blog" scheme="http://summerpen.github.io/categories/Blog/"/>
     
     
-      <category term="WEB" scheme="http://sumerpen.gethub.io/tags/WEB/"/>
+      <category term="WEB" scheme="http://summerpen.github.io/tags/WEB/"/>
     
   </entry>
   
