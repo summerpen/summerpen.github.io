@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://summerpen.github.io/"/>
-  <updated>2019-04-04T23:30:14.876Z</updated>
+  <updated>2019-04-05T05:20:57.749Z</updated>
   <id>http://summerpen.github.io/</id>
   
   <author>
@@ -15,6 +15,32 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Coding托管</title>
+    <link href="http://summerpen.github.io/2019/04/05/bo-ke-tuo-guan-coding-ping-tai/"/>
+    <id>http://summerpen.github.io/2019/04/05/bo-ke-tuo-guan-coding-ping-tai/</id>
+    <published>2019-04-04T16:00:00.000Z</published>
+    <updated>2019-04-05T05:20:57.749Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h1 id=&quot;托管Coding平台&quot;&gt;&lt;a href=&quot;#托管Coding平台&quot; class=&quot;headerlink&quot;
+        
+      
+    
+    </summary>
+    
+      <category term="Blog" scheme="http://summerpen.github.io/categories/Blog/"/>
+    
+    
+      <category term="WEB" scheme="http://summerpen.github.io/tags/WEB/"/>
+    
+  </entry>
   
   <entry>
     <title>初次搭建博客</title>
