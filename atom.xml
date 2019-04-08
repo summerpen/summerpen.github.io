@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://summerpen.github.io/"/>
-  <updated>2019-04-05T10:38:13.519Z</updated>
+  <updated>2019-04-08T15:10:04.119Z</updated>
   <id>http://summerpen.github.io/</id>
   
   <author>
@@ -15,6 +15,32 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Promise链式操作引出的EventLoop</title>
+    <link href="http://summerpen.github.io/2019/04/08/promise-lian-shi-cao-zuo-bing-yin-chu-de-yi-dao-ti/"/>
+    <id>http://summerpen.github.io/2019/04/08/promise-lian-shi-cao-zuo-bing-yin-chu-de-yi-dao-ti/</id>
+    <published>2019-04-07T16:00:00.000Z</published>
+    <updated>2019-04-08T15:10:04.119Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;p&gt;阅读此文章前需要有一定的 Promise 基础 ,若无,请移步阮一峰老师的 ES6 入门&lt;a href=&quot;http://es6.ruanyifeng.com/#docs/promise&quot; target=&quot;_blank&quot;
+        
+      
+    
+    </summary>
+    
+      <category term="JS" scheme="http://summerpen.github.io/categories/JS/"/>
+    
+    
+      <category term="ES6" scheme="http://summerpen.github.io/tags/ES6/"/>
+    
+  </entry>
   
   <entry>
     <title>Coding托管</title>
