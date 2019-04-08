@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://summerpen.github.io/"/>
-  <updated>2019-04-08T15:10:04.119Z</updated>
+  <updated>2019-04-08T15:28:14.307Z</updated>
   <id>http://summerpen.github.io/</id>
   
   <author>
@@ -18,10 +18,10 @@
   
   <entry>
     <title>Promise链式操作引出的EventLoop</title>
-    <link href="http://summerpen.github.io/2019/04/08/promise-lian-shi-cao-zuo-bing-yin-chu-de-yi-dao-ti/"/>
-    <id>http://summerpen.github.io/2019/04/08/promise-lian-shi-cao-zuo-bing-yin-chu-de-yi-dao-ti/</id>
+    <link href="http://summerpen.github.io/2019/04/08/promise-lian-shi-cao-zuo-bing-yin-chu-de-eventloop/"/>
+    <id>http://summerpen.github.io/2019/04/08/promise-lian-shi-cao-zuo-bing-yin-chu-de-eventloop/</id>
     <published>2019-04-07T16:00:00.000Z</published>
-    <updated>2019-04-08T15:10:04.119Z</updated>
+    <updated>2019-04-08T15:28:14.307Z</updated>
     
     <summary type="html">
     
