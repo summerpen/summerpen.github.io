@@ -3,11 +3,11 @@
 ## Source: https://github.com/hexojs/hexo/
 
 # Site
-title: summer
+title: summerpen
 subtitle: summerpen
 description: 身体和灵魂,总有一个在路上
 keywords: WEB
-author: 天狼
+author: summerpen
 language: zh-CN
 timezone:
 
@@ -35,7 +35,7 @@ titlecase: false # Transform title into titlecase
 external_link: true # Open external links in new tab
 filename_case: 0
 render_drafts: false
-post_asset_folder: false
+post_asset_folder: true
 relative_link: false
 future: true
 # highlight:
@@ -52,7 +52,7 @@ prism_plugin:
   mode: "realtime" # realtime/preprocess
   theme: "tomorrow"
   line_number: false # default false
-  custom_css: 
+  custom_css:
 
 #搜索
 search:
@@ -116,5 +116,17 @@ theme: hexo-theme-matery #使用主题 (theme文件夹下的主题)
 ## Docs: https://hexo.io/docs/deployment.html
 deploy:
   type: git
-  repo: https://github.com/summerpen/summerpen.github.io
-  branch: master
+  repo:
+    coding: https://dev.tencent.com/u/summerpen/p/summerpen,master
+    github: https://github.com/summerpen/summerpen.github.io,master
+
+# deploy:    #阿里云虚拟主机,域名需要备案
+#   type: ftpsync
+#   host: byu6271070001.my3w.com  #主机地址
+#   user: byu6271070001          #用户名
+#   pass:           #密码
+#   remote: /htdocs          #目录，应该所有阿里云虚拟主机的网站内容目录都是这个，不是根目录 /
+#   port:
+#   ignore: .DS_Store
+#   connections:
+#   verbose: true
