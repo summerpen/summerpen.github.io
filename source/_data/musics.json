@@ -1,16 +1,11 @@
 [{
-    "name": "五月雨变奏电音",
-    "artist": "AnimeVibe",
-    "url": "http://xxx.com/music1.mp3",
-    "cover": "http://xxx.com/music-cover1.png"
-}, {
-    "name": "Take me hand",
-    "artist": "DAISHI DANCE,Cecile Corbel",
-    "url": "/medias/music/music2.mp3",
-    "cover": "/medias/music/cover2.png"
-}, {
-    "name": "Shape of You",
-    "artist": "J.Fla",
-    "url": "http://xxx.com/music3.mp3",
-    "cover": "http://xxx.com/music-cover3.png"
-}]
+        "name": "You",
+        "artist": "Approaching Nirvana",
+        "url": "http://sc1.111ttt.cn/2015/1/02/16/95161038113.mp3"
+    },
+    {
+        "name": "At the Edge",
+        "artist": "千坂",
+        "url": "http://data.flash127.com/mp3_flash127_com/mp3/201807/20180718_2053_617670.mp3"
+    }
+]
