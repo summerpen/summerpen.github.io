@@ -117,7 +117,7 @@ theme: hexo-theme-matery #使用主题 (theme文件夹下的主题)
 deploy:
   type: git
   repo:
-    coding: https://dev.tencent.com/u/summerpen/p/summerpen,master
+    # coding: https://dev.tencent.com/u/summerpen/p/summerpen,master
     github: https://github.com/summerpen/summerpen.github.io,master
 
 # deploy:    #阿里云虚拟主机,域名需要备案
