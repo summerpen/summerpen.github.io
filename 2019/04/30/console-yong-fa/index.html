@@ -4,9 +4,9 @@
 
 <head><meta name="generator" content="Hexo 3.8.0">
     <meta charset="utf-8">
-    <meta name="keywords" content="Promise链式操作引出的EventLoop, WEB">
-    <meta name="description" content="阅读此文章前需要有一定的 Promise 基础 ,若无,请移步阮一峰老师的 ES6 入门http://es6.ruanyifeng.com/#docs/promise
-此篇文章主要说下 Promise 的链式操作我们经常会遇到依次请求多个接">
+    <meta name="keywords" content="console用法, WEB">
+    <meta name="description" content="Console 对象提供对浏览器控制台的接入,可以在任何全局对象中访问1.显示信息的命令congsole.log()、console.error()、console.warn()、console.info()
+let json = {a: ">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -14,7 +14,7 @@
     <meta name="format-detection" content="telephone=no">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <title>Promise链式操作引出的EventLoop | summerpen</title>
+    <title>console用法 | summerpen</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/font-awesome.min.css">
@@ -258,13 +258,13 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/22.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/12.jpg')">
     <div class="container">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
                     <div class="description center-align post-title">
-                        Promise链式操作引出的EventLoop
+                        console用法
                     </div>
                 </div>
             </div>
@@ -375,8 +375,8 @@
                     
                     <div class="article-tag">
                         
-                            <a href="/tags/ES6/" target="_blank">
-                                <span class="chip bg-color">ES6</span>
+                            <a href="/tags/调试技巧/" target="_blank">
+                                <span class="chip bg-color">调试技巧</span>
                             </a>
                         
                     </div>
@@ -399,7 +399,7 @@
             <div class="post-info">
                 <div class="post-date info-break-policy">
                     <i class="fa fa-calendar-minus-o fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2019-04-08
+                    2019-04-30
                 </div>
 
                 
@@ -415,151 +415,111 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <p>阅读此文章前需要有一定的 Promise 基础 ,若无,请移步阮一峰老师的 ES6 入门<a href="http://es6.ruanyifeng.com/#docs/promise" target="_blank" rel="noopener">http://es6.ruanyifeng.com/#docs/promise</a></p>
-<h4 id="此篇文章主要说下-Promise-的链式操作"><a href="#此篇文章主要说下-Promise-的链式操作" class="headerlink" title="此篇文章主要说下 Promise 的链式操作"></a>此篇文章主要说下 Promise 的链式操作</h4><p>我们经常会遇到依次请求多个接口,或者其他操作的情况<br>简单写下 Promise 如何处理优雅进行链式操作,先看以下代码</p>
-<pre class=" language-javascript"><code class="language-javascript"><span class="token string">"use strict"</span><span class="token punctuation">;</span>
-<span class="token comment" spellcheck="true">//Promise1</span>
-<span class="token keyword">function</span> <span class="token function">Pro1</span><span class="token punctuation">(</span>p<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-  <span class="token keyword">return</span> <span class="token keyword">new</span> <span class="token class-name">Promise</span><span class="token punctuation">(</span><span class="token punctuation">(</span>resolve<span class="token punctuation">,</span> reject<span class="token punctuation">)</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token punctuation">{</span>
-    console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">"p1"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token keyword">let</span> a <span class="token operator">=</span> Math<span class="token punctuation">.</span><span class="token function">random</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token keyword">if</span> <span class="token punctuation">(</span>a <span class="token operator">></span> <span class="token number">0.5</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-      <span class="token function">resolve</span><span class="token punctuation">(</span>a<span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token punctuation">{</span>
-      <span class="token function">reject</span><span class="token punctuation">(</span>a<span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
-  <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token punctuation">}</span>
-<span class="token comment" spellcheck="true">//模拟上传</span>
-<span class="token keyword">function</span> <span class="token function">upLoad</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-  <span class="token keyword">return</span> <span class="token keyword">new</span> <span class="token class-name">Promise</span><span class="token punctuation">(</span><span class="token punctuation">(</span>resolve<span class="token punctuation">,</span> reject<span class="token punctuation">)</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token punctuation">{</span>
-    console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token template-string"><span class="token string">`upLoad</span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span>Date<span class="token punctuation">.</span><span class="token function">now</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token interpolation-punctuation punctuation">}</span></span><span class="token string">`</span></span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token comment" spellcheck="true">//创建3种情况</span>
-    <span class="token keyword">let</span> key <span class="token operator">=</span> Math<span class="token punctuation">.</span><span class="token function">floor</span><span class="token punctuation">(</span>Math<span class="token punctuation">.</span><span class="token function">random</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">*</span> <span class="token number">3</span> <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token keyword">switch</span> <span class="token punctuation">(</span>key<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-      <span class="token keyword">case</span> <span class="token number">1</span><span class="token punctuation">:</span> <span class="token comment" spellcheck="true">//上传成功</span>
-        <span class="token function">resolve</span><span class="token punctuation">(</span><span class="token string">"success"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token keyword">break</span><span class="token punctuation">;</span>
-      <span class="token keyword">case</span> <span class="token number">2</span><span class="token punctuation">:</span>
-        <span class="token keyword">return</span> <span class="token function">upLoad</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">//上传失败可重新上传</span>
-        <span class="token keyword">break</span><span class="token punctuation">;</span>
-      <span class="token keyword">case</span> <span class="token number">3</span><span class="token punctuation">:</span>
-        <span class="token function">reject</span><span class="token punctuation">(</span><span class="token string">"upLoad err"</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">//代码层面错误,reject</span>
-        <span class="token keyword">break</span><span class="token punctuation">;</span>
-      <span class="token keyword">default</span><span class="token punctuation">:</span>
-        <span class="token keyword">break</span><span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
-  <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token punctuation">}</span>
-<span class="token keyword">function</span> <span class="token function">test</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-  <span class="token function">Pro1</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
-    <span class="token punctuation">.</span><span class="token function">then</span><span class="token punctuation">(</span>data <span class="token operator">=</span><span class="token operator">></span> <span class="token punctuation">{</span>
-      console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token template-string"><span class="token string">`Pro1进入upLoad`</span></span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-      <span class="token operator">...</span>
-      <span class="token operator">...</span>
-      <span class="token keyword">return</span> <span class="token function">upLoad</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token punctuation">}</span><span class="token punctuation">)</span>
-    <span class="token punctuation">.</span><span class="token function">then</span><span class="token punctuation">(</span>data <span class="token operator">=</span><span class="token operator">></span> <span class="token punctuation">{</span>
-      console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">"完成upLoad"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-      console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>data<span class="token punctuation">)</span><span class="token punctuation">;</span>
-      <span class="token operator">...</span>
-      <span class="token operator">...</span>
-    <span class="token punctuation">}</span><span class="token punctuation">)</span>
-    <span class="token punctuation">.</span><span class="token keyword">catch</span><span class="token punctuation">(</span>err <span class="token operator">=</span><span class="token operator">></span> <span class="token punctuation">{</span>
-      <span class="token keyword">throw</span> <span class="token keyword">new</span> <span class="token class-name">Error</span><span class="token punctuation">(</span>err<span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token punctuation">}</span>
-<span class="token function">test</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+                <h2 id="Console-对象提供对浏览器控制台的接入-可以在任何全局对象中访问"><a href="#Console-对象提供对浏览器控制台的接入-可以在任何全局对象中访问" class="headerlink" title="Console 对象提供对浏览器控制台的接入,可以在任何全局对象中访问"></a>Console 对象提供对浏览器控制台的接入,可以在任何全局对象中访问</h2><h3 id="1-显示信息的命令"><a href="#1-显示信息的命令" class="headerlink" title="1.显示信息的命令"></a>1.显示信息的命令</h3><p>congsole.log()、console.error()、console.warn()、console.info()</p>
+<pre class=" language-js"><code class="language-js"><span class="token keyword">let</span> json <span class="token operator">=</span> <span class="token punctuation">{</span>a<span class="token punctuation">:</span> <span class="token number">1</span><span class="token punctuation">,</span> b<span class="token punctuation">:</span> <span class="token number">2</span><span class="token punctuation">}</span>
+ console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">"log ==> "</span><span class="token punctuation">,</span> json<span class="token punctuation">,</span> <span class="token keyword">new</span> <span class="token class-name">Date</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+ console<span class="token punctuation">.</span><span class="token function">error</span><span class="token punctuation">(</span><span class="token string">"error ==> "</span><span class="token punctuation">,</span> json<span class="token punctuation">,</span> <span class="token keyword">new</span> <span class="token class-name">Date</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+ console<span class="token punctuation">.</span><span class="token function">warn</span><span class="token punctuation">(</span><span class="token string">"warn ==> "</span><span class="token punctuation">,</span> json<span class="token punctuation">,</span> <span class="token keyword">new</span> <span class="token class-name">Date</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+ console<span class="token punctuation">.</span><span class="token function">info</span><span class="token punctuation">(</span><span class="token string">"info ==> "</span><span class="token punctuation">,</span> json<span class="token punctuation">,</span> <span class="token keyword">new</span> <span class="token class-name">Date</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
 </code></pre>
-<h5 id="promise-的调用"><a href="#promise-的调用" class="headerlink" title="promise 的调用"></a>promise 的调用</h5><p>可以看出,在 test 函数中,依次调用 Pro1,upLoad 两个函数,每个函数中返回的都是<code>Promise对象</code>,最后通过<code>catch</code>对两个函数进行错误处理</p>
-<ol>
-<li>在<code>Pro1</code>中,各有一半的几率返回<code>resolve</code>和<code>reject</code>函数.在 test 函数中,先调用 Pro1 函数,完成后返回 Promise 对象,<br>因而可以继续使用.then 方法. 在<code>第一个</code>.then 中继续调用 upload 方法</li>
-<li>在<code>upload</code>中,三种情况分别返回:<ul>
-<li><code>resolve</code>成功,</li>
-<li>上传失败,重新上传.(此处 return upLoad 函数,进行自调)</li>
-<li><code>reject</code>失败,</li>
-</ul>
-</li>
-<li>完成<code>upLoad</code>后,在第二个.then 里进行书数据处理,其他想进行的操作.</li>
-<li><code>Pro1</code>和<code>upLoad</code>如有<code>reject()</code>时,会进行<code>.catch</code>中的错误抛出</li>
-</ol>
-<h5 id="这样就完成的两个-Promise-对象的链式操作-多个层级的链式操作类似"><a href="#这样就完成的两个-Promise-对象的链式操作-多个层级的链式操作类似" class="headerlink" title="这样就完成的两个 Promise 对象的链式操作,多个层级的链式操作类似"></a>这样就完成的两个 Promise 对象的链式操作,多个层级的链式操作类似</h5><h4 id="使用-Promise-对象-逻辑可以更清晰-函数自调也更方便"><a href="#使用-Promise-对象-逻辑可以更清晰-函数自调也更方便" class="headerlink" title="使用 Promise 对象,逻辑可以更清晰,函数自调也更方便."></a>使用 Promise 对象,逻辑可以更清晰,函数自调也更方便.</h4><h4 id="看到这里-想起了前几天看到的一道题目"><a href="#看到这里-想起了前几天看到的一道题目" class="headerlink" title="看到这里,想起了前几天看到的一道题目"></a>看到这里,想起了前几天看到的一道题目</h4><pre class=" language-js"><code class="language-js"><span class="token keyword">new</span> <span class="token class-name">Promise</span><span class="token punctuation">(</span><span class="token punctuation">(</span>resolve<span class="token punctuation">,</span> reject<span class="token punctuation">)</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token punctuation">{</span>
-  console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">"promise1"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-  <span class="token function">resolve</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token punctuation">}</span><span class="token punctuation">)</span>
-  <span class="token punctuation">.</span><span class="token function">then</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token punctuation">{</span>
-    console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">"then11"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token keyword">new</span> <span class="token class-name">Promise</span><span class="token punctuation">(</span><span class="token punctuation">(</span>resolve<span class="token punctuation">,</span> reject<span class="token punctuation">)</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token punctuation">{</span>
-      console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">"promise2"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-      <span class="token function">resolve</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token punctuation">}</span><span class="token punctuation">)</span>
-      <span class="token punctuation">.</span><span class="token function">then</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token punctuation">{</span>
-        console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">"then21"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-      <span class="token punctuation">}</span><span class="token punctuation">)</span>
-      <span class="token punctuation">.</span><span class="token function">then</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token punctuation">{</span>
-        console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">"then23"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-      <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-  <span class="token punctuation">}</span><span class="token punctuation">)</span>
-  <span class="token punctuation">.</span><span class="token function">then</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token punctuation">{</span>
-    console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">"then12"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-  <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<p><img src="/images/console/1.png" alt></p>
+<p>每一个结果在日志中都有不同的样式，可以使用浏览器控制台的日志筛选功能筛选出感兴趣的日志信息。<br>有两种途径使用这些方法，你可以简单的传入一组对象，其中的字符串对象会被连接到一起，输出到控制台。或者你可以传入包含零个或多个的替换的字符串，后面跟着被替换的对象列表。<br>| 字符        | 描述                                                   |<br>|————-|——————————————————–|<br>| <code>%o</code> , <code>%O</code> | 打印 JavaScript 对象，可以是整数、字符串或是 JSON 数据 |<br>| <code>%d</code> , <code>%i</code> | 打印整数                                               |<br>| <code>%s</code>        | 打印字符串                                             |<br>| <code>%f</code>        | 打印浮点数                                             |</p>
+<ul>
+<li>还可以使用<code>&quot;%c&quot;</code>为打印内容定义样式:<pre class=" language-js"><code class="language-js">console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">"%cMy stylish message"</span><span class="token punctuation">,</span> <span class="token string">"color: red; font-style: italic"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 </code></pre>
-<p>Promise 为了解决回调地狱,但是有时候也不乏 Promise 的嵌套</p>
-<h4 id="题目解析"><a href="#题目解析" class="headerlink" title="题目解析"></a>题目解析</h4><h5 id="主要配合-Promise-考察-EventLoop"><a href="#主要配合-Promise-考察-EventLoop" class="headerlink" title="主要配合 Promise 考察 EventLoop"></a>主要配合 Promise 考察 EventLoop</h5><ol>
-<li><p>所有同步任务都在主线程上执行，形成一个执行栈（execution context stack）。</p>
-</li>
-<li><p>主线程之外，还存在一个”任务队列”（task queue）。只要异步任务有了运行结果，就在”任务队列”之中放置一个事件。</p>
-</li>
-<li><p>一旦”执行栈”中的所有同步任务执行完毕，系统就会读取”任务队列”，看看里面有哪些事件。那些对应的异步任务，于是结束等待状态，进入执行栈，开始执行。</p>
-</li>
-<li><p>主线程不断重复上面的第三步。</p>
-</li>
-</ol>
-<h5 id="即-js-分为"><a href="#即-js-分为" class="headerlink" title="即 js 分为:"></a>即 js 分为:</h5><ul>
-<li><p>同步任务和异步任务</p>
-</li>
-<li><p>宏任务(macrotask)和微任务(microtask)</p>
-</li>
-<li><p>主线程（同步任务） - 所有同步任务都在主线程上执行，形成一个执行栈。</p>
-</li>
-<li><p>任务队列（异步任务）：当异步任务有了结果，就在任务队列中放一个事件。</p>
-</li>
-<li><p>JS 运行机制：当”执行栈”中的所有同步任务执行完毕，系统就会读取”任务队列”</p>
+<img src="/images/console/2.png" alt></li>
+</ul>
+<h3 id="2-console-dir"><a href="#2-console-dir" class="headerlink" title="2.console.dir()"></a>2.console.dir()</h3><p><code>console.dir()</code>可以显示一个对象所有的属性和方法。</p>
+<pre class=" language-js"><code class="language-js"><span class="token keyword">var</span> dog<span class="token operator">=</span><span class="token punctuation">{</span>
+    name<span class="token punctuation">:</span><span class="token string">'dog'</span><span class="token punctuation">,</span>
+    bark <span class="token punctuation">:</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span><span class="token function">alert</span><span class="token punctuation">(</span><span class="token string">"汪汪汪"</span><span class="token punctuation">)</span><span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+console<span class="token punctuation">.</span><span class="token function">dir</span><span class="token punctuation">(</span>dog<span class="token punctuation">)</span>
+</code></pre>
+<p><img src="/images/console/3.png" alt></p>
+<h3 id="3-分组显示"><a href="#3-分组显示" class="headerlink" title="3.分组显示"></a>3.分组显示</h3><p>如果信息太多，可以分组显示，用到的方法是<code>console.group()</code>和<code>console.groupEnd()</code>。</p>
+<pre class=" language-js"><code class="language-js">console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">"This is the outer level"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+console<span class="token punctuation">.</span><span class="token function">group</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">"Level 2"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+console<span class="token punctuation">.</span><span class="token function">group</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">"Level 3"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+console<span class="token punctuation">.</span><span class="token function">warn</span><span class="token punctuation">(</span><span class="token string">"More of level 3"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+console<span class="token punctuation">.</span><span class="token function">groupEnd</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">"Back to level 2"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+console<span class="token punctuation">.</span><span class="token function">groupEnd</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+console<span class="token punctuation">.</span><span class="token function">debug</span><span class="token punctuation">(</span><span class="token string">"Back to the outer level"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre>
+<p><img src="/images/console/4.png" alt></p>
+<h3 id="4-console-table"><a href="#4-console-table" class="headerlink" title="4.console.table()"></a>4.console.table()</h3><p>console.table()非常美观打印数组和对象</p>
+<pre class=" language-js"><code class="language-js"> <span class="token keyword">const</span> typeOfConsole <span class="token operator">=</span> <span class="token punctuation">[</span>
+   <span class="token punctuation">{</span>name<span class="token punctuation">:</span> <span class="token string">'log'</span><span class="token punctuation">,</span> type<span class="token punctuation">:</span> <span class="token string">'standard'</span><span class="token punctuation">}</span><span class="token punctuation">,</span>
+   <span class="token punctuation">{</span>name<span class="token punctuation">:</span> <span class="token string">'info'</span><span class="token punctuation">,</span> type<span class="token punctuation">:</span> <span class="token string">'standard'</span><span class="token punctuation">}</span><span class="token punctuation">,</span>
+   <span class="token punctuation">{</span>name<span class="token punctuation">:</span> <span class="token string">'table'</span><span class="token punctuation">,</span> type<span class="token punctuation">:</span> <span class="token string">'standard'</span><span class="token punctuation">}</span>
+ <span class="token punctuation">]</span>
+
+ console<span class="token punctuation">.</span><span class="token function">table</span><span class="token punctuation">(</span>typeOfConsole<span class="token punctuation">)</span>
+
+ <span class="token keyword">const</span> mySocial <span class="token operator">=</span> <span class="token punctuation">{</span>
+   faceboo<span class="token punctuation">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span>
+   linkedin<span class="token punctuation">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span>
+   instagram<span class="token punctuation">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span>
+   twitter<span class="token punctuation">:</span> <span class="token boolean">false</span>
+ <span class="token punctuation">}</span>
+
+ console<span class="token punctuation">.</span><span class="token function">table</span><span class="token punctuation">(</span>mySocial<span class="token punctuation">)</span>
+</code></pre>
+<p><img src="/images/console/5.png" alt></p>
+<h3 id="5-计次计时功能"><a href="#5-计次计时功能" class="headerlink" title="5.计次计时功能"></a>5.计次计时功能</h3><ul>
+<li><code>console.count()</code> 计算并输出相同的类型的次数</li>
+<li><code>console.time()</code>和<code>console.timeEnd()</code>，用来计算代码的运行时间。<pre class=" language-js"><code class="language-js"><span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">let</span> i<span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">;</span>i<span class="token operator">&lt;</span><span class="token number">5</span><span class="token punctuation">;</span>i<span class="token operator">++</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+  console<span class="token punctuation">.</span><span class="token function">count</span><span class="token punctuation">(</span><span class="token string">'added'</span><span class="token punctuation">)</span>
+<span class="token punctuation">}</span>
+console<span class="token punctuation">.</span><span class="token function">time</span><span class="token punctuation">(</span><span class="token string">"计时器一"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+　　<span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">var</span> i<span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">;</span>i<span class="token operator">&lt;</span><span class="token number">1000</span><span class="token punctuation">;</span>i<span class="token operator">++</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+　　　　<span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">var</span> j<span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">;</span>j<span class="token operator">&lt;</span><span class="token number">1000</span><span class="token punctuation">;</span>j<span class="token operator">++</span><span class="token punctuation">)</span><span class="token punctuation">{</span><span class="token punctuation">}</span>
+　　<span class="token punctuation">}</span>
+　　console<span class="token punctuation">.</span><span class="token function">timeEnd</span><span class="token punctuation">(</span><span class="token string">"计时器一"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre>
 </li>
 </ul>
-<p>其中宏任务包括：script（主代码）, setTimeout, setInterval, setImmediate, I/O, UI rendering</p>
-<p>微任务包括：process.nextTick（Nodejs）, Promises, Object.observe, MutationObserver</p>
-<p>这里我们注意到，宏任务里有 script，也就是我们的正常执行的主代码</p>
-<h5 id="事件循环-EventLoop"><a href="#事件循环-EventLoop" class="headerlink" title="事件循环 EventLoop"></a>事件循环 EventLoop</h5><blockquote>
-<p>主线程从”任务队列”中读取事件，这个过程是循环不断的，所以整个的这种运行机制又称为 Event Loop（事件循环）。此机制具体如下:主线程会不断从任务队列中按顺序取任务执行，每执行完一个任务都会检查 microtask 队列是否为空（执行完一个任务的具体标志是函数执行栈为空），如果不为空则会一次性执行完所有 microtask。然后再进入下一个循环去任务队列中取下一个任务执行。</p>
-</blockquote>
-<p>总结了下过程：script(宏任务) - 清空微任务队列 - 执行一个宏任务 - 清空微任务队列 - 执行一个宏任务， 如此往复。</p>
-<ul>
-<li>先执行 script 里的同步代码（此时是宏任务）。碰到异步任务，放到任务队列。</li>
-<li>查找任务队列有没有微任务，有就把此时的微任务全部按顺序执行 （这就是为什么 promise 会比 setTimeout 先执行，因为先执行的宏任务是同步代码，setTimeout 被放进任务队列了，setTimeout - 又是宏任务，在它之前先得执行微任务(就比如 promise)）。</li>
-<li>执行一个宏任务（先进到队列中的那个宏任务），再把这次宏任务里的宏任务和微任务放到任务队列。</li>
-<li>…重复 2、3 步骤</li>
+<p><img src="/images/console/6.png" alt></p>
+<h3 id="6-断言"><a href="#6-断言" class="headerlink" title="6.断言"></a>6.断言</h3><p><code>console.assert()</code>用来判断一个表达式或变量是否为真。如果结果为否，则在控制台输出一条相应信息，并且抛出一个异常。</p>
+<pre class=" language-js"><code class="language-js"><span class="token keyword">var</span> result <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+console<span class="token punctuation">.</span><span class="token function">assert</span><span class="token punctuation">(</span> result <span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">var</span> year <span class="token operator">=</span> <span class="token number">2019</span><span class="token punctuation">;</span>
+console<span class="token punctuation">.</span><span class="token function">assert</span><span class="token punctuation">(</span>year <span class="token operator">==</span> <span class="token number">9102</span> <span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre>
+<p><img src="/images/console/7.png" alt></p>
+<h3 id="7-追踪"><a href="#7-追踪" class="headerlink" title="7.追踪"></a>7.追踪</h3><p><code>console.trace()</code>用来追踪函数的调用轨迹</p>
+<pre class=" language-js"><code class="language-js"><span class="token keyword">function</span> <span class="token function">foo</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">function</span> <span class="token function">bar</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    console<span class="token punctuation">.</span><span class="token function">trace</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+  <span class="token function">bar</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token function">foo</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre>
+<p><img src="/images/console/8.png" alt></p>
+<h2 id="移动端调试方案-vConsole"><a href="#移动端调试方案-vConsole" class="headerlink" title="移动端调试方案 vConsole"></a>移动端调试方案 <code>vConsole</code></h2><p>一个轻量、可拓展、针对手机网页的前端开发者调试面板。</p>
+<h2 id="特性"><a href="#特性" class="headerlink" title="特性"></a>特性</h2><ul>
+<li>查看 console 日志</li>
+<li>查看网络请求</li>
+<li>查看页面 element 结构</li>
+<li>查看 Cookies、localStorage 和 SessionStorage</li>
+<li>手动执行 JS 命令行</li>
+<li>自定义插件<h2 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h2>从vConsole GitHub仓库下载 <a href="https://github.com/Tencent/vConsole" target="_blank" rel="noopener">链接</a> 或者使用 npm 安装:<pre class=" language-js"><code class="language-js">npm install vconsole
+</code></pre>
+引入 dist/vconsole.min.js 到项目中：<pre class=" language-js"><code class="language-js"><span class="token operator">&lt;</span>script src<span class="token operator">=</span><span class="token string">"path/to/vconsole.min.js"</span><span class="token operator">></span><span class="token operator">&lt;</span><span class="token operator">/</span>script<span class="token operator">></span>
+<span class="token operator">&lt;</span>script<span class="token operator">></span>
+<span class="token comment" spellcheck="true">// 初始化</span>
+<span class="token keyword">var</span> vConsole <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">VConsole</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">'Hello world'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token operator">&lt;</span><span class="token operator">/</span>script<span class="token operator">></span>
+</code></pre>
+使用详情见<a href="(https://github.com/Tencent/vConsole">https://github.com/Tencent/vConsole</a>)</li>
 </ul>
-<h5 id="要做到心中有队列，有先进先出的概念"><a href="#要做到心中有队列，有先进先出的概念" class="headerlink" title="要做到心中有队列，有先进先出的概念"></a>要做到心中有队列，有先进先出的概念</h5><!-- 如图: -->
-<!-- ![EventLoop图解](https://dev.tencent.com/u/summerpen/p/summerpen/git/blob/master/medias/JS/EventLoop.png) -->
-<h5 id="输出结果"><a href="#输出结果" class="headerlink" title="输出结果"></a>输出结果</h5><blockquote>
-<p>promise1<br>then11<br>promise2<br>then21<br>then12<br>then23</p>
-</blockquote>
-<blockquote>
-<p>第一轮</p>
-<ul>
-<li>current task: promise1 是当之无愧的立即执行的一个函数，参考上一章节的 executor，立即执行输出<code>promise1</code></li>
-<li>micro task queue: [promise1 的第一个 then]<br>第二轮</li>
-<li>current task: then1 执行中，立即输出了 <code>then11</code> 以及新 promise2 的 <code>promise2</code></li>
-<li>micro task queue: [新 promise2 的 then 函数,以及 promise1 的第二个 then 函数]<br>第三轮</li>
-<li>current task: 新 promise2 的 then 函数输出 <code>then21</code> 和 promise1 的第二个 then 函数输出 <code>then12</code>。</li>
-<li>micro task queue: [新 promise2 的第二 then 函数]<br>第四轮</li>
-<li>current task: 新 promise2 的第二 then 函数输出 <code>then23</code></li>
-<li>micro task queue: []</li>
-<li>END</li>
-</ul>
-</blockquote>
-<h3 id="THE-END"><a href="#THE-END" class="headerlink" title="THE END"></a>THE END</h3>
+
             </div>
             <hr>
 
@@ -706,7 +666,7 @@
                     </span>
                     <a href="http://summerpen.github.io" class="b-link-green">summerpen</a>
                     <i class="fa fa-angle-right fa-lg fa-fw text-color"></i>
-                    <a href="/2019/04/08/promise-lian-shi-cao-zuo-bing-yin-chu-de-eventloop/" class="b-link-green">Promise链式操作引出的EventLoop</a>
+                    <a href="/2019/04/30/console-yong-fa/" class="b-link-green">console用法</a>
                 </p>
             </div>
         </div>
@@ -729,7 +689,8 @@
         
         <div class="article col s12 m6 overflow-policy" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fa fa-chevron-left"></i>&nbsp;上一篇</div>
+                <i class="fa fa-dot-circle-o"></i>&nbsp;本篇
+            </div>
             <div class="card">
                 <a href="/2019/04/30/console-yong-fa/">
                     <div class="card-image">
@@ -744,9 +705,9 @@
                     <div class="summary block-with-text">Console 对象提供对浏览器控制台的接入,可以在任何全局对象中访问1.显示信息的命令congsole.log()、console.error()、console.warn()、console.info()
 let json = {a: </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="fa fa-clock-o fa-fw icon-date"></i>2019-04-30
-                        </span>
+                            <span class="publish-date">
+                                <i class="fa fa-clock-o fa-fw icon-date"></i>2019-04-30
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fa fa-bookmark fa-fw icon-category"></i>
@@ -759,6 +720,7 @@ let json = {a: </div>
                         </span>
                     </div>
                 </div>
+
                 
                 <div class="card-action article-tags">
                     
@@ -777,28 +739,28 @@ let json = {a: </div>
                 下一篇&nbsp;<i class="fa fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2019/04/05/bo-ke-tuo-guan-coding-ping-tai/">
+                <a href="/2019/04/08/promise-lian-shi-cao-zuo-bing-yin-chu-de-eventloop/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/5.jpg" class="responsive-img" alt="Coding托管">
+                        <img src="/medias/featureimages/22.jpg" class="responsive-img" alt="Promise链式操作引出的EventLoop">
                         
-                        <span class="card-title">Coding托管</span>
+                        <span class="card-title">Promise链式操作引出的EventLoop</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
-                    <div class="summary block-with-text">托管Coding平台博客在GitHub上托管时,访问速度不是很友好.就又在Coding(升级为腾讯云开发者平台)平台上同步了一份.
-</div>
+                    <div class="summary block-with-text">阅读此文章前需要有一定的 Promise 基础 ,若无,请移步阮一峰老师的 ES6 入门http://es6.ruanyifeng.com/#docs/promise
+此篇文章主要说下 Promise 的链式操作我们经常会遇到依次请求多个接</div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="fa fa-clock-o fa-fw icon-date"></i>2019-04-05
+                                <i class="fa fa-clock-o fa-fw icon-date"></i>2019-04-08
                             </span>
                         <span class="publish-author">
                             
                             <i class="fa fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/Blog/" class="post-category" target="_blank">
-                                    Blog
+                            <a href="/categories/JS/" class="post-category" target="_blank">
+                                    JS
                                 </a>
                             
                             
@@ -808,8 +770,8 @@ let json = {a: </div>
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/WEB/" target="_blank">
-                        <span class="chip bg-color">WEB</span>
+                    <a href="/tags/ES6/" target="_blank">
+                        <span class="chip bg-color">ES6</span>
                     </a>
                     
                 </div>

@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://summerpen.github.io/"/>
-  <updated>2019-04-27T09:45:02.278Z</updated>
+  <updated>2019-04-30T15:10:29.711Z</updated>
   <id>http://summerpen.github.io/</id>
   
   <author>
@@ -15,6 +15,32 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>console用法</title>
+    <link href="http://summerpen.github.io/2019/04/30/console-yong-fa/"/>
+    <id>http://summerpen.github.io/2019/04/30/console-yong-fa/</id>
+    <published>2019-04-29T16:00:00.000Z</published>
+    <updated>2019-04-30T15:10:29.711Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h2 id=&quot;Console-对象提供对浏览器控制台的接入-可以在任何全局对象中访问&quot;&gt;&lt;a href=&quot;#Console-对象提供对浏览器控制台的接入-可以在任何全局对象中访问&quot; class=&quot;headerlink&quot; title=&quot;Console
+        
+      
+    
+    </summary>
+    
+      <category term="JS" scheme="http://summerpen.github.io/categories/JS/"/>
+    
+    
+      <category term="调试技巧" scheme="http://summerpen.github.io/tags/%E8%B0%83%E8%AF%95%E6%8A%80%E5%B7%A7/"/>
+    
+  </entry>
   
   <entry>
     <title>Promise链式操作引出的EventLoop</title>
