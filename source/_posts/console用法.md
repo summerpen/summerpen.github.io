@@ -47,6 +47,7 @@ console.dir(dog)
 
 ### 3.分组显示
 如果信息太多，可以分组显示，用到的方法是`console.group()`和`console.groupEnd()`。
+
 ```js
 console.log("This is the outer level");
 console.group();
@@ -59,18 +60,20 @@ console.log("Back to level 2");
 console.groupEnd();
 console.debug("Back to the outer level");
 ```
+
 ![](/images/console/4.png)
 
 ### 4.console.table()
+
 console.table()非常美观打印数组和对象
 ```js
  const typeOfConsole = [
    {name: 'log', type: 'standard'},
    {name: 'info', type: 'standard'},
-   {name: 'table', type: 'standard'}
+   {name: 'table', type: 'standard'}   
  ]
 
- console.table(typeOfConsole)
+ console.table(typeOfConsole)  
 
  const mySocial = {
    faceboo: true,
