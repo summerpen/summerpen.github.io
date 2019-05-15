@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://summerpen.github.io/"/>
-  <updated>2019-05-15T13:40:53.564Z</updated>
+  <updated>2019-05-15T13:45:08.426Z</updated>
   <id>http://summerpen.github.io/</id>
   
   <author>
@@ -17,11 +17,11 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
-    <title></title>
+    <title>使用Promise串行调用接口</title>
     <link href="http://summerpen.github.io/2019/05/15/chuan-xing-diao-yong-jie-kou/"/>
     <id>http://summerpen.github.io/2019/05/15/chuan-xing-diao-yong-jie-kou/</id>
-    <published>2019-05-15T13:12:29.447Z</published>
-    <updated>2019-05-15T13:40:53.564Z</updated>
+    <published>2019-05-14T16:00:00.000Z</published>
+    <updated>2019-05-15T13:45:08.426Z</updated>
     
     <summary type="html">
     
@@ -35,6 +35,10 @@
     
     </summary>
     
+      <category term="Blog" scheme="http://summerpen.github.io/categories/Blog/"/>
+    
+    
+      <category term="ES6" scheme="http://summerpen.github.io/tags/ES6/"/>
     
   </entry>
   
