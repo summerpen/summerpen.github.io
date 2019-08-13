@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://summerpen.github.io/"/>
-  <updated>2019-06-18T14:02:46.180Z</updated>
+  <updated>2019-08-13T13:59:58.573Z</updated>
   <id>http://summerpen.github.io/</id>
   
   <author>
@@ -15,6 +15,32 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>使用浅克隆对highCharts图例进行排序</title>
+    <link href="http://summerpen.github.io/2019/08/13/shi-yong-qian-ke-long-dui-highcharts-tu-li-jin-xing-pai-xu/"/>
+    <id>http://summerpen.github.io/2019/08/13/shi-yong-qian-ke-long-dui-highcharts-tu-li-jin-xing-pai-xu/</id>
+    <published>2019-08-12T16:00:00.000Z</published>
+    <updated>2019-08-13T13:59:58.573Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;pre class=&quot; language-js&quot;&gt;&lt;code class=&quot;language-js&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;var&lt;/span&gt; data &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span
+        
+      
+    
+    </summary>
+    
+      <category term="Blog" scheme="http://summerpen.github.io/categories/Blog/"/>
+    
+    
+      <category term="JS, HTML" scheme="http://summerpen.github.io/tags/JS-HTML/"/>
+    
+  </entry>
   
   <entry>
     <title>模态框封装并支持拖拽</title>
