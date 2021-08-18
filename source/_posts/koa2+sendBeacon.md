@@ -1,5 +1,5 @@
 ---
-title: 关闭页面时向后台发送消息
+title: 关闭页面时向后台发送消息(sendBeacon+koa2)
 subtitle: 使用navigator.sendBeacon, 在页面关闭时向后台发送请求，并使用node.js处理请求
 date: 2021-8-18
 author: summerpen
