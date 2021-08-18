@@ -4,7 +4,7 @@
   
     
     <entry>
-      <title>关闭页面时向后台发送消息</title>
+      <title>关闭页面时向后台发送消息(sendBeacon+koa2)</title>
       <link href="/2021/08/18/koa2-sendbeacon/"/>
       <url>/2021/08/18/koa2-sendbeacon/</url>
       
