@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://summerpen.github.io/"/>
-  <updated>2021-07-15T11:25:27.423Z</updated>
+  <updated>2021-08-18T06:55:46.842Z</updated>
   <id>http://summerpen.github.io/</id>
   
   <author>
@@ -15,6 +15,32 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>关闭页面时向后台发送消息</title>
+    <link href="http://summerpen.github.io/2021/08/18/koa2-sendbeacon/"/>
+    <id>http://summerpen.github.io/2021/08/18/koa2-sendbeacon/</id>
+    <published>2021-08-17T16:00:00.000Z</published>
+    <updated>2021-08-18T06:55:46.842Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h3 id=&quot;在用户关闭页面的时候，前端要给后台发一条请求，释放该页面的授权占用&quot;&gt;&lt;a href=&quot;#在用户关闭页面的时候，前端要给后台发一条请求，释放该页面的授权占用&quot; class=&quot;headerlink&quot;
+        
+      
+    
+    </summary>
+    
+      <category term="Node.js" scheme="http://summerpen.github.io/categories/Node-js/"/>
+    
+    
+      <category term="Node.js" scheme="http://summerpen.github.io/tags/Node-js/"/>
+    
+  </entry>
   
   <entry>
     <title>vue-cli3+ media处理</title>
@@ -122,35 +148,6 @@
   </entry>
   
   <entry>
-    <title>三栏布局</title>
-    <link href="http://summerpen.github.io/2019/05/21/san-lan-bu-ju/"/>
-    <id>http://summerpen.github.io/2019/05/21/san-lan-bu-ju/</id>
-    <published>2019-05-20T16:00:00.000Z</published>
-    <updated>2021-07-15T11:14:32.529Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        
-        
-          &lt;blockquote&gt;
-&lt;p&gt;本文主要讲解左右两栏固定宽度,中间部分自适应的几种布局实现方式&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;h4 id=&quot;圣杯布局&quot;&gt;&lt;a href=&quot;#圣杯布局&quot; class=&quot;headerlink&quot;
-        
-      
-    
-    </summary>
-    
-      <category term="Blog" scheme="http://summerpen.github.io/categories/Blog/"/>
-    
-    
-      <category term="CSS" scheme="http://summerpen.github.io/tags/CSS/"/>
-    
-  </entry>
-  
-  <entry>
     <title>曲线运动</title>
     <link href="http://summerpen.github.io/2019/05/21/qu-xian-yun-dong/"/>
     <id>http://summerpen.github.io/2019/05/21/qu-xian-yun-dong/</id>
@@ -167,6 +164,35 @@
 &lt;li&gt;由CSS3实现曲线运动——贝塞尔曲线(cubic-bezier)&lt;/li&gt;
 &lt;/ul&gt;
 &lt;pre class=&quot; language-html&quot;&gt;&lt;code class=&quot;language-html&quot;&gt;&lt;span class=&quot;token
+        
+      
+    
+    </summary>
+    
+      <category term="Blog" scheme="http://summerpen.github.io/categories/Blog/"/>
+    
+    
+      <category term="CSS" scheme="http://summerpen.github.io/tags/CSS/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>三栏布局</title>
+    <link href="http://summerpen.github.io/2019/05/21/san-lan-bu-ju/"/>
+    <id>http://summerpen.github.io/2019/05/21/san-lan-bu-ju/</id>
+    <published>2019-05-20T16:00:00.000Z</published>
+    <updated>2021-07-15T11:14:32.529Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;blockquote&gt;
+&lt;p&gt;本文主要讲解左右两栏固定宽度,中间部分自适应的几种布局实现方式&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h4 id=&quot;圣杯布局&quot;&gt;&lt;a href=&quot;#圣杯布局&quot; class=&quot;headerlink&quot;
         
       
     

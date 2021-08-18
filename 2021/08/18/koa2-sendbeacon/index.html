@@ -4,7 +4,7 @@
 
 <head><meta name="generator" content="Hexo 3.9.0">
     <meta charset="utf-8">
-    <meta name="keywords" content="使用Promise串行调用接口, WEB">
+    <meta name="keywords" content="关闭页面时向后台发送消息, WEB">
     <meta name="description" content="身体和灵魂,总有一个在路上">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>使用Promise串行调用接口 | summerpen</title>
+    <title>关闭页面时向后台发送消息 | summerpen</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -203,12 +203,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/23.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/21.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">使用Promise串行调用接口</h1>
+                    <h1 class="description center-align post-title">关闭页面时向后台发送消息</h1>
                 </div>
             </div>
         </div>
@@ -324,8 +324,8 @@
                     
                     <div class="article-tag">
                         
-                            <a href="/tags/ES6/">
-                                <span class="chip bg-color">ES6</span>
+                            <a href="/tags/Node-js/">
+                                <span class="chip bg-color">Node.js</span>
                             </a>
                         
                     </div>
@@ -336,8 +336,8 @@
                     <div class="post-cate">
                         <i class="fas fa-bookmark fa-fw icon-category"></i>
                         
-                            <a href="/categories/Blog/" class="post-category">
-                                Blog
+                            <a href="/categories/Node-js/" class="post-category">
+                                Node.js
                             </a>
                         
                     </div>
@@ -349,7 +349,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2019-05-15
+                    2021-08-18
                 </div>
                 
 
@@ -370,145 +370,81 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h4 id="串行使用Promise调用接口"><a href="#串行使用Promise调用接口" class="headerlink" title="串行使用Promise调用接口"></a>串行使用Promise调用接口</h4><ul>
-<li>碰到需求,需要根据ID,依次查询一组图片</li>
-<li>以前有使用Promise,并行查询接口,使用Promise.all()等最后所有数据返回之后,渲染到页面中</li>
-<li>后来查询资料之后,模拟出调用接口,使用串行方式查询接口</li>
-<li>废话少说,代码如下</li>
+                <h3 id="在用户关闭页面的时候，前端要给后台发一条请求，释放该页面的授权占用"><a href="#在用户关闭页面的时候，前端要给后台发一条请求，释放该页面的授权占用" class="headerlink" title="在用户关闭页面的时候，前端要给后台发一条请求，释放该页面的授权占用"></a>在用户关闭页面的时候，前端要给后台发一条请求，释放该页面的授权占用</h3><h3 id="使用-navigator-sendBeacon"><a href="#使用-navigator-sendBeacon" class="headerlink" title="使用 navigator.sendBeacon()"></a>使用 navigator.sendBeacon()</h3><ul>
+<li>这个方法主要用于满足统计和诊断代码的需要，这些代码通常尝试在卸载（unload）文档之前向web服务器发送数据</li>
+<li>用法<br><code>navigator.sendBeacon(url, data);</code></li>
 </ul>
-<hr>
-<pre class=" language-js"><code class="language-js"><span class="token comment" spellcheck="true">//串行Promise</span>
-<span class="token keyword">function</span> <span class="token function">serialPromise</span><span class="token punctuation">(</span>arr<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-    <span class="token keyword">let</span> res <span class="token operator">=</span> Promise<span class="token punctuation">.</span><span class="token function">resolve</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">//使用  Promise.resolve() 可以在后续中使用 .then进行链式操作</span>
-    arr<span class="token punctuation">.</span><span class="token function">map</span><span class="token punctuation">(</span>fn <span class="token operator">=</span><span class="token operator">></span> <span class="token punctuation">{</span>
-        res <span class="token operator">=</span> res
-            <span class="token punctuation">.</span><span class="token function">then</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token function">fn</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
-            <span class="token punctuation">.</span><span class="token keyword">catch</span><span class="token punctuation">(</span>err <span class="token operator">=</span><span class="token operator">></span> console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token template-string"><span class="token string">`%c</span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span>err<span class="token interpolation-punctuation punctuation">}</span></span><span class="token string">`</span></span><span class="token punctuation">,</span> <span class="token string">"color:red"</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token punctuation">}</span>
-<span class="token comment" spellcheck="true">// let timer =setTimeout(() => {</span>
-<span class="token comment" spellcheck="true">//   console.log(111111);</span>
-<span class="token comment" spellcheck="true">// }, 1000);</span>
-<span class="token comment" spellcheck="true">// console.log(typeof timer);  //number ,setTimeout 返回一个id</span>
-
-<span class="token keyword">let</span> ajaxTest <span class="token operator">=</span> <span class="token punctuation">(</span>data<span class="token punctuation">,</span> resolve<span class="token punctuation">,</span> reject<span class="token punctuation">)</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token punctuation">{</span>
-    <span class="token function">setTimeout</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token punctuation">{</span>
-        <span class="token keyword">let</span> flag <span class="token operator">=</span> Math<span class="token punctuation">.</span><span class="token function">floor</span><span class="token punctuation">(</span>Math<span class="token punctuation">.</span><span class="token function">random</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">*</span> <span class="token number">4</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token keyword">switch</span> <span class="token punctuation">(</span>flag<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-
-            <span class="token keyword">case</span> <span class="token number">0</span><span class="token punctuation">:</span> <span class="token comment" spellcheck="true">//接口查询成功</span>
-            console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">"%c--------查询成功的处理--------"</span><span class="token punctuation">,</span> <span class="token string">"color:blue"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-            console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">"%cId"</span> <span class="token operator">+</span> data<span class="token punctuation">,</span> <span class="token string">"color:blue"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-            <span class="token function">resolve</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-            <span class="token keyword">break</span><span class="token punctuation">;</span>
-
-            <span class="token keyword">case</span> <span class="token number">1</span><span class="token punctuation">:</span> <span class="token comment" spellcheck="true">//查询失败,继续查询</span>
-            <span class="token keyword">case</span> <span class="token number">2</span><span class="token punctuation">:</span>
-            console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">"%c--------查询失败,重新调用--------"</span><span class="token punctuation">,</span> <span class="token string">"color:orange"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-            <span class="token function">ajaxTest</span><span class="token punctuation">(</span>data<span class="token punctuation">,</span> resolve<span class="token punctuation">,</span> reject<span class="token punctuation">)</span><span class="token punctuation">;</span>
-            <span class="token keyword">break</span><span class="token punctuation">;</span>
-
-            <span class="token keyword">case</span> <span class="token number">3</span><span class="token punctuation">:</span> <span class="token comment" spellcheck="true">//调用接口错误,reject</span>
-            <span class="token function">reject</span><span class="token punctuation">(</span><span class="token string">"错误"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-            <span class="token keyword">break</span><span class="token punctuation">;</span>
-
-            <span class="token keyword">default</span><span class="token punctuation">:</span>
-            <span class="token keyword">break</span><span class="token punctuation">;</span>
-        <span class="token punctuation">}</span>
-    <span class="token punctuation">}</span><span class="token punctuation">,</span> <span class="token number">1000</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<p><code>url</code> 表明 <code>data</code> 将要被发送到的网络地址<br><code>data</code> 参数是将要发送的 <code>ArrayBufferView</code> 或 <code>Blob</code> 、 <code>DOMString</code> (js中即string) 或者 <code>FormData</code> 类型的数据。</p>
+<ul>
+<li>返回值<br>当用户代理成功把数据加入传输队列时，sendBeacon() 方法将会返回 <code>true</code> ，否则返回 <code>false</code> 。</li>
+</ul>
+<h3 id="前端代码"><a href="#前端代码" class="headerlink" title="前端代码"></a>前端代码</h3><pre class=" language-js"><code class="language-js">window<span class="token punctuation">.</span>beginTime <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">//执行onbeforeunload的开始时间</span>
+window<span class="token punctuation">.</span>differTime <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">//时间差</span>
+window<span class="token punctuation">.</span>onbeforeunload <span class="token operator">=</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    window<span class="token punctuation">.</span>beginTime <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Date</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">getTime</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 <span class="token punctuation">}</span><span class="token punctuation">;</span>
-<span class="token keyword">let</span> arr <span class="token operator">=</span> <span class="token punctuation">[</span>
-    <span class="token comment" spellcheck="true">//由一组ID,通过map方法返回一组带有Promise的ajax请求</span>
-    <span class="token string">"20190515_1010"</span><span class="token punctuation">,</span>
-    <span class="token string">"20190515_1210"</span><span class="token punctuation">,</span>
-    <span class="token string">"20190515_1310"</span><span class="token punctuation">,</span>
-    <span class="token string">"20190515_1410"</span><span class="token punctuation">,</span>
-    <span class="token string">"20190515_1510"</span><span class="token punctuation">,</span>
-    <span class="token string">"20190515_1610"</span><span class="token punctuation">,</span>
-    <span class="token string">"20190515_1710"</span><span class="token punctuation">,</span>
-    <span class="token string">"20190515_1810"</span><span class="token punctuation">,</span>
-    <span class="token string">"20190515_1910"</span><span class="token punctuation">,</span>
-    <span class="token string">"20190515_2010"</span>
-<span class="token punctuation">]</span><span class="token punctuation">.</span><span class="token function">map</span><span class="token punctuation">(</span><span class="token punctuation">(</span>item<span class="token punctuation">,</span> index<span class="token punctuation">)</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token punctuation">{</span>
-    <span class="token keyword">let</span> data <span class="token operator">=</span> item<span class="token punctuation">;</span>
-    <span class="token keyword">return</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token punctuation">{</span>
-        <span class="token keyword">return</span> <span class="token keyword">new</span> <span class="token class-name">Promise</span><span class="token punctuation">(</span><span class="token punctuation">(</span>resolve<span class="token punctuation">,</span> reject<span class="token punctuation">)</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token punctuation">{</span>
-            console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token template-string"><span class="token string">`%cindex:</span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span>index<span class="token interpolation-punctuation punctuation">}</span></span><span class="token string">`</span></span><span class="token punctuation">,</span> <span class="token string">"color:green"</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">//记录调用的次数</span>
-            <span class="token function">ajaxTest</span><span class="token punctuation">(</span>data<span class="token punctuation">,</span> resolve<span class="token punctuation">,</span> reject<span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token punctuation">}</span><span class="token punctuation">;</span>
-<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token function">serialPromise</span><span class="token punctuation">(</span>arr<span class="token punctuation">)</span><span class="token punctuation">;</span>
+window<span class="token punctuation">.</span>onunload <span class="token operator">=</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    window<span class="token punctuation">.</span>differTime <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Date</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">getTime</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">-</span> window<span class="token punctuation">.</span>beginTime<span class="token punctuation">;</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>window<span class="token punctuation">.</span>differTime <span class="token operator">&lt;=</span> <span class="token number">5</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">"浏览器关闭"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">const</span> data <span class="token operator">=</span> <span class="token punctuation">{</span>
+            name<span class="token punctuation">:</span> <span class="token string">"loginout关闭页面"</span><span class="token punctuation">,</span>
+        <span class="token punctuation">}</span><span class="token punctuation">;</span>
+        window<span class="token punctuation">.</span>navigator<span class="token punctuation">.</span><span class="token function">sendBeacon</span><span class="token punctuation">(</span>
+            <span class="token string">"http://127.0.0.1:3000/loginout"</span><span class="token punctuation">,</span>
+            JSON<span class="token punctuation">.</span><span class="token function">stringify</span><span class="token punctuation">(</span>data<span class="token punctuation">)</span>
+        <span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token punctuation">{</span>
+        console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">"浏览器刷新页面操作"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
 </code></pre>
-<h4 id="代码简单说明"><a href="#代码简单说明" class="headerlink" title="代码简单说明"></a>代码简单说明</h4><ul>
-<li>arr数组,由一组ID,通过map方法返回一组带有Promise的ajax请求</li>
-<li>ajaxTest请求,使用定时器,模拟调用接口,调用时,有1/2的失败率,1/4成功率,1/4接口调用错误</li>
-<li>serialPromise串行调用接口,先声明变量<code>res</code>,Promise.resolve() ,便于使用<code>.then</code>链式操作,<br>然后使用<code>arr.map</code> 依次调用<code>arr</code>中的每个ajaxTest请求</li>
+<h3 id="node-js代码"><a href="#node-js代码" class="headerlink" title="node.js代码"></a>node.js代码</h3><ul>
+<li><p>在一个空白目录下 <code>npm init -y</code> 生成package.json 然后安装依赖 <code>npm i koa koa-router koa-bodyparser co-body -S</code></p>
+</li>
+<li><p>在该目录下新建app.js </p>
+</li>
 </ul>
-<h4 id="效果演示"><a href="#效果演示" class="headerlink" title="效果演示"></a>效果演示</h4><ul>
-<li>Chrome中代码执行效果演示,话说1/2的失败几率,连续失败了9次,脸真黑<br><img src="/images/serialPromise.png" alt></li>
-</ul>
-<h4 id="使用async串行调用接口"><a href="#使用async串行调用接口" class="headerlink" title="使用async串行调用接口"></a>使用async串行调用接口</h4><ul>
-<li>可以进一步使用<code>async</code> 串行调用</li>
-</ul>
-<pre class=" language-js"><code class="language-js"><span class="token keyword">let</span> ajaxTest <span class="token operator">=</span> <span class="token punctuation">(</span>data<span class="token punctuation">,</span> resolve<span class="token punctuation">,</span> reject<span class="token punctuation">)</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token punctuation">{</span>
-    <span class="token function">setTimeout</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token punctuation">{</span>
-        <span class="token keyword">let</span> flag <span class="token operator">=</span> Math<span class="token punctuation">.</span><span class="token function">floor</span><span class="token punctuation">(</span>Math<span class="token punctuation">.</span><span class="token function">random</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">*</span> <span class="token number">3</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token keyword">switch</span> <span class="token punctuation">(</span>flag<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-          <span class="token keyword">case</span> <span class="token number">0</span><span class="token punctuation">:</span> <span class="token comment" spellcheck="true">//接口查询成功</span>
-            console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">"%c--------查询成功的处理--------"</span><span class="token punctuation">,</span> <span class="token string">"color:blue"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-            console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">"%cId"</span> <span class="token operator">+</span> data<span class="token punctuation">,</span> <span class="token string">"color:blue"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-            <span class="token function">resolve</span><span class="token punctuation">(</span>data<span class="token punctuation">)</span><span class="token punctuation">;</span>
-            <span class="token keyword">break</span><span class="token punctuation">;</span>
-          <span class="token keyword">case</span> <span class="token number">1</span><span class="token punctuation">:</span> <span class="token comment" spellcheck="true">//查询失败,继续查询</span>
-            console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">"%c--------查询失败,重新调用--------"</span><span class="token punctuation">,</span> <span class="token string">"color:orange"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-            <span class="token function">ajaxTest</span><span class="token punctuation">(</span>data<span class="token punctuation">,</span> resolve<span class="token punctuation">,</span> reject<span class="token punctuation">)</span><span class="token punctuation">;</span>
-            <span class="token keyword">break</span><span class="token punctuation">;</span>
-          <span class="token keyword">case</span> <span class="token number">2</span><span class="token punctuation">:</span>
-            <span class="token function">reject</span><span class="token punctuation">(</span><span class="token string">"错误"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-            <span class="token keyword">break</span><span class="token punctuation">;</span>
-        <span class="token punctuation">}</span>
-    <span class="token punctuation">}</span><span class="token punctuation">,</span> <span class="token number">1000</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token punctuation">}</span><span class="token punctuation">;</span>
-<span class="token keyword">let</span> arr <span class="token operator">=</span> <span class="token punctuation">[</span>
-    <span class="token comment" spellcheck="true">//由一组ID,通过map方法返回一组带有Promise的ajax请求</span>
-    <span class="token string">"20190515_1010"</span><span class="token punctuation">,</span>
-    <span class="token string">"20190515_1210"</span><span class="token punctuation">,</span>
-    <span class="token string">"20190515_1310"</span><span class="token punctuation">,</span>
-    <span class="token string">"20190515_1410"</span><span class="token punctuation">,</span>
-    <span class="token string">"20190515_1510"</span><span class="token punctuation">,</span>
-    <span class="token string">"20190515_1610"</span><span class="token punctuation">,</span>
-    <span class="token string">"20190515_1710"</span><span class="token punctuation">,</span>
-    <span class="token string">"20190515_1810"</span><span class="token punctuation">,</span>
-    <span class="token string">"20190515_1910"</span><span class="token punctuation">,</span>
-    <span class="token string">"20190515_2010"</span>
-<span class="token punctuation">]</span><span class="token punctuation">.</span><span class="token function">map</span><span class="token punctuation">(</span><span class="token punctuation">(</span>item<span class="token punctuation">,</span> index<span class="token punctuation">)</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token punctuation">{</span>
-    <span class="token keyword">let</span> data <span class="token operator">=</span> item<span class="token punctuation">;</span>
-    <span class="token keyword">return</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token punctuation">{</span>
-    <span class="token keyword">return</span> <span class="token keyword">new</span> <span class="token class-name">Promise</span><span class="token punctuation">(</span><span class="token punctuation">(</span>resolve<span class="token punctuation">,</span> reject<span class="token punctuation">)</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token punctuation">{</span>
-        console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token template-string"><span class="token string">`%cindex:</span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span>index<span class="token interpolation-punctuation punctuation">}</span></span><span class="token string">`</span></span><span class="token punctuation">,</span> <span class="token string">"color:green"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token function">ajaxTest</span><span class="token punctuation">(</span>data<span class="token punctuation">,</span> resolve<span class="token punctuation">,</span> reject<span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token punctuation">}</span><span class="token punctuation">;</span>
-<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
- <span class="token keyword">function</span> <span class="token function">serialPromise</span><span class="token punctuation">(</span>arr<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-    <span class="token keyword">let</span> res <span class="token operator">=</span> undefined<span class="token punctuation">;</span>
-    <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">let</span> item <span class="token keyword">of</span> arr<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-    <span class="token keyword">try</span> <span class="token punctuation">{</span>
-        res <span class="token operator">=</span> <span class="token keyword">await</span> <span class="token function">item</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token punctuation">}</span> <span class="token keyword">catch</span> <span class="token punctuation">(</span><span class="token class-name">err</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-        console<span class="token punctuation">.</span><span class="token function">error</span><span class="token punctuation">(</span>err<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<pre class=" language-js"><code class="language-js"><span class="token keyword">const</span> Koa <span class="token operator">=</span> <span class="token function">require</span><span class="token punctuation">(</span><span class="token string">"koa"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">const</span> Router <span class="token operator">=</span> <span class="token function">require</span><span class="token punctuation">(</span><span class="token string">"koa-router"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">const</span> fs <span class="token operator">=</span> <span class="token function">require</span><span class="token punctuation">(</span><span class="token string">"fs"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">const</span> bodyParser <span class="token operator">=</span> <span class="token function">require</span><span class="token punctuation">(</span><span class="token string">"koa-bodyparser"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">const</span> coBody <span class="token operator">=</span> <span class="token function">require</span><span class="token punctuation">(</span><span class="token string">"co-body"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">const</span> app <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Koa</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">const</span> router <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Router</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+app<span class="token punctuation">.</span><span class="token function">use</span><span class="token punctuation">(</span><span class="token function">bodyParser</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token comment" spellcheck="true">// 此处接口做了兼容, 可以处理中正常post请求, 以及 navigator.sendBeacon的调用</span>
+router<span class="token punctuation">.</span><span class="token function">post</span><span class="token punctuation">(</span><span class="token string">"/loginout"</span><span class="token punctuation">,</span> <span class="token keyword">async</span> <span class="token keyword">function</span><span class="token punctuation">(</span>ctx<span class="token punctuation">,</span> res<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token comment" spellcheck="true">// url路径传入 ?json=true ( http://127.0.0.1:3000/loginout?isJson=true),代表传入json格式 (可用postman 使用post请求)</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span>ctx<span class="token punctuation">.</span>query<span class="token punctuation">.</span>isJson<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">let</span> params <span class="token operator">=</span> <span class="token keyword">await</span> coBody<span class="token punctuation">.</span><span class="token function">json</span><span class="token punctuation">(</span>ctx<span class="token punctuation">.</span>req<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>params<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        ctx<span class="token punctuation">.</span>body <span class="token operator">=</span> params<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token punctuation">{</span>
+        <span class="token comment" spellcheck="true">// text/plain格式 (可用postman 使用post请求, 或者在页面中执行 前端代码中的navigator.sendBeacon)</span>
+        <span class="token comment" spellcheck="true">//http://127.0.0.1:3000/api/loginout</span>
+        <span class="token comment" spellcheck="true">// navigator.sendBeacon('http://localhost:3000/loginout','{"a":9}')</span>
+        console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>ctx<span class="token punctuation">.</span>request<span class="token punctuation">.</span>body<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        ctx<span class="token punctuation">.</span>body <span class="token operator">=</span> ctx<span class="token punctuation">.</span>request<span class="token punctuation">.</span>body<span class="token punctuation">;</span>
     <span class="token punctuation">}</span>
-    <span class="token punctuation">}</span>
-    <span class="token keyword">return</span> res<span class="token punctuation">;</span>
-<span class="token punctuation">}</span>
-<span class="token function">serialPromise</span><span class="token punctuation">(</span>arr<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">then</span><span class="token punctuation">(</span>data <span class="token operator">=</span><span class="token operator">></span> <span class="token punctuation">{</span>
-    console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>data<span class="token punctuation">)</span><span class="token punctuation">;</span>
 <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+app<span class="token punctuation">.</span><span class="token function">use</span><span class="token punctuation">(</span>router<span class="token punctuation">.</span><span class="token function">routes</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">use</span><span class="token punctuation">(</span>router<span class="token punctuation">.</span><span class="token function">allowedMethods</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+app<span class="token punctuation">.</span><span class="token function">listen</span><span class="token punctuation">(</span><span class="token number">3000</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">"server started at http:localhost:3000"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 </code></pre>
 <ul>
-<li>主要使用<code>async</code>改造<code>serialPromise</code>函数,使用<code>for..of</code>循环,内部使用了<code>await</code>实现串行</li>
+<li>启动服务 <code>node app.js</code>, 如果全局安装了pm2, 也可使用 <code>pm2 start app.js</code></li>
 </ul>
+<h3 id="进行测试该功能"><a href="#进行测试该功能" class="headerlink" title="进行测试该功能"></a>进行测试该功能</h3><ol>
+<li>在项目中执行前端代码,观察node服务日志</li>
+<li>也可以在postman中执行接口调用,查看node服务日志</li>
+</ol>
+<h3 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h3><ol>
+<li><a href="https://blog.wangpengpeng.site/2020/06/19/js%E5%88%A4%E6%96%AD%E6%B5%8F%E8%A7%88%E5%99%A8%E7%AA%97%E5%8F%A3%E7%9A%84%E5%85%B3%E9%97%AD%E4%B8%8E%E5%88%B7%E6%96%B0/#%E6%9C%80%E7%BB%88%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%95" target="_blank" rel="noopener">js判断浏览器窗口的关闭与刷新</a></li>
+<li><a href="https://juejin.cn/post/6997016317635084319" target="_blank" rel="noopener">你知道关闭页面时怎么向后台发送消息吗？
+</a></li>
+<li><a href="https://stackoverflow.com/questions/31355128/how-to-receive-data-posted-by-navigator-sendbeacon-on-node-js-server" target="_blank" rel="noopener">stack overflow: How to receive data posted by “navigator.sendbeacon” on node.js server?</a></li>
+</ol>
 
                 
             </div>
@@ -535,7 +471,7 @@
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="http://summerpen.github.io/2019/05/15/chuan-xing-diao-yong-jie-kou.1/">http://summerpen.github.io/2019/05/15/chuan-xing-diao-yong-jie-kou.1/</a>
+                    <a href="http://summerpen.github.io/2021/08/18/koa2-sendbeacon/">http://summerpen.github.io/2021/08/18/koa2-sendbeacon/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -573,8 +509,8 @@
                     
                         <div class="article-tag">
                             
-                                <a href="/tags/ES6/">
-                                    <span class="chip bg-color">ES6</span>
+                                <a href="/tags/Node-js/">
+                                    <span class="chip bg-color">Node.js</span>
                                 </a>
                             
                         </div>
@@ -744,17 +680,18 @@
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+                <i class="far fa-dot-circle"></i>&nbsp;本篇
+            </div>
             <div class="card">
-                <a href="/2019/05/21/san-lan-bu-ju/">
+                <a href="/2021/08/18/koa2-sendbeacon/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/3.jpg" class="responsive-img" alt="三栏布局">
+                        <img src="/medias/featureimages/21.jpg" class="responsive-img" alt="关闭页面时向后台发送消息">
                         
-                        <span class="card-title">三栏布局</span>
+                        <span class="card-title">关闭页面时向后台发送消息</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -764,26 +701,27 @@
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2019-05-21
-                        </span>
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2021-08-18
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/Blog/" class="post-category">
-                                    Blog
+                            <a href="/categories/Node-js/" class="post-category">
+                                    Node.js
                                 </a>
                             
                             
                         </span>
                     </div>
                 </div>
+
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/CSS/">
-                        <span class="chip bg-color">CSS</span>
+                    <a href="/tags/Node-js/">
+                        <span class="chip bg-color">Node.js</span>
                     </a>
                     
                 </div>
@@ -797,13 +735,13 @@
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2019/04/30/console-yong-fa/">
+                <a href="/2021/07/15/vue-cli-media-chu-li/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/12.jpg" class="responsive-img" alt="console用法">
+                        <img src="/medias/featureimages/17.jpg" class="responsive-img" alt="vue-cli3+ media处理">
                         
-                        <span class="card-title">console用法</span>
+                        <span class="card-title">vue-cli3+ media处理</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -814,7 +752,7 @@
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2019-04-30
+                                <i class="far fa-clock fa-fw icon-date"></i>2021-07-15
                             </span>
                         <span class="publish-author">
                             
@@ -831,8 +769,8 @@
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/调试技巧/">
-                        <span class="chip bg-color">调试技巧</span>
+                    <a href="/tags/WEB/">
+                        <span class="chip bg-color">WEB</span>
                     </a>
                     
                 </div>
