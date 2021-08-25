@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://summerpen.github.io/"/>
-  <updated>2021-08-18T08:02:04.263Z</updated>
+  <updated>2021-08-25T07:09:43.408Z</updated>
   <id>http://summerpen.github.io/</id>
   
   <author>
@@ -15,6 +15,35 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>less中~的用法</title>
+    <link href="http://summerpen.github.io/2021/08/25/less-zhong-bo-lang-xian-yong-fa/"/>
+    <id>http://summerpen.github.io/2021/08/25/less-zhong-bo-lang-xian-yong-fa/</id>
+    <published>2021-08-24T16:00:00.000Z</published>
+    <updated>2021-08-25T07:09:43.408Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h3 id=&quot;用法&quot;&gt;&lt;a href=&quot;#用法&quot; class=&quot;headerlink&quot; title=&quot;~ 用法&quot;&gt;&lt;/a&gt;&lt;code&gt;~&lt;/code&gt; 用法&lt;/h3&gt;&lt;ol&gt;
+&lt;li&gt;动态路径&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;在 less 中，使用 &lt;code&gt;~&lt;/code&gt;
+        
+      
+    
+    </summary>
+    
+      <category term="Less" scheme="http://summerpen.github.io/categories/Less/"/>
+    
+    
+      <category term="Less" scheme="http://summerpen.github.io/tags/Less/"/>
+    
+  </entry>
   
   <entry>
     <title>关闭页面时向后台发送消息(sendBeacon+koa2)</title>
@@ -148,35 +177,6 @@
   </entry>
   
   <entry>
-    <title>三栏布局</title>
-    <link href="http://summerpen.github.io/2019/05/21/san-lan-bu-ju/"/>
-    <id>http://summerpen.github.io/2019/05/21/san-lan-bu-ju/</id>
-    <published>2019-05-20T16:00:00.000Z</published>
-    <updated>2021-07-15T11:14:32.529Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        
-        
-          &lt;blockquote&gt;
-&lt;p&gt;本文主要讲解左右两栏固定宽度,中间部分自适应的几种布局实现方式&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;h4 id=&quot;圣杯布局&quot;&gt;&lt;a href=&quot;#圣杯布局&quot; class=&quot;headerlink&quot;
-        
-      
-    
-    </summary>
-    
-      <category term="Blog" scheme="http://summerpen.github.io/categories/Blog/"/>
-    
-    
-      <category term="CSS" scheme="http://summerpen.github.io/tags/CSS/"/>
-    
-  </entry>
-  
-  <entry>
     <title>曲线运动</title>
     <link href="http://summerpen.github.io/2019/05/21/qu-xian-yun-dong/"/>
     <id>http://summerpen.github.io/2019/05/21/qu-xian-yun-dong/</id>
@@ -193,6 +193,35 @@
 &lt;li&gt;由CSS3实现曲线运动——贝塞尔曲线(cubic-bezier)&lt;/li&gt;
 &lt;/ul&gt;
 &lt;pre class=&quot; language-html&quot;&gt;&lt;code class=&quot;language-html&quot;&gt;&lt;span class=&quot;token
+        
+      
+    
+    </summary>
+    
+      <category term="Blog" scheme="http://summerpen.github.io/categories/Blog/"/>
+    
+    
+      <category term="CSS" scheme="http://summerpen.github.io/tags/CSS/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>三栏布局</title>
+    <link href="http://summerpen.github.io/2019/05/21/san-lan-bu-ju/"/>
+    <id>http://summerpen.github.io/2019/05/21/san-lan-bu-ju/</id>
+    <published>2019-05-20T16:00:00.000Z</published>
+    <updated>2021-07-15T11:14:32.529Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;blockquote&gt;
+&lt;p&gt;本文主要讲解左右两栏固定宽度,中间部分自适应的几种布局实现方式&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h4 id=&quot;圣杯布局&quot;&gt;&lt;a href=&quot;#圣杯布局&quot; class=&quot;headerlink&quot;
         
       
     
