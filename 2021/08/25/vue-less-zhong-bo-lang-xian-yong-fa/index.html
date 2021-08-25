@@ -373,10 +373,29 @@
                 <h3 id="用法"><a href="#用法" class="headerlink" title="~ 用法"></a><code>~</code> 用法</h3><ol>
 <li>动态路径</li>
 </ol>
-<p>在 less 中，使用 <code>~</code> 为前缀就会变成动态的，他默认会去寻找 <code>node_modules</code> 下的模块，也就是以 <code>node_modules</code> 为原点，所以你可以这么使用：</p>
+<ul>
+<li>在 less 中，使用 <code>~</code> 为前缀就会变成动态的，他默认会去寻找 <code>node_modules</code> 下的模块，也就是以 <code>node_modules</code> 为原点，所以你可以这么使用：</li>
+</ul>
 <pre class=" language-less"><code class="language-less"><span class="token variable">@import</span> <span class="token string">"~element-ui/lib/theme-chalk/index.css"</span><span class="token punctuation">;</span>
 </code></pre>
 <p>不加 <code>~</code> 时, 会从当前路径寻找资源, <code>./element-ui/lib/theme-chalk/index.css</code> 从而找不到对应资源<br><img src="/images/less引入.png" alt></p>
+<ul>
+<li>在vue中 如果使用了别名<code>assets</code> 引用静态资源(如图片等), 在vue <code>template</code>中直接引入图片时, 也是需要加<code>~</code>, 才能正确访问到图片资源</li>
+</ul>
+<blockquote>
+<p>错误写法 <code>&lt;img src=&quot;assets/image/camera.png&quot;/&gt;</code><br>正确写法 <code>&lt;img src=&quot;~assets/image/camera.png&quot;/&gt;</code></p>
+</blockquote>
+<p>别名配置</p>
+<pre class=" language-js"><code class="language-js">module<span class="token punctuation">.</span>exports <span class="token operator">=</span> <span class="token punctuation">{</span>
+    configureWebpack<span class="token punctuation">:</span> <span class="token punctuation">{</span>
+        resolve<span class="token punctuation">:</span> <span class="token punctuation">{</span>
+            alias<span class="token punctuation">:</span> <span class="token punctuation">{</span>
+                assets<span class="token punctuation">:</span> <span class="token string">"@/assets"</span><span class="token punctuation">,</span>
+            <span class="token punctuation">}</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+</code></pre>
 <ol start="2">
 <li>延迟计算</li>
 </ol>
@@ -411,7 +430,7 @@
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="http://summerpen.github.io/2021/08/25/less-zhong-bo-lang-xian-yong-fa/">http://summerpen.github.io/2021/08/25/less-zhong-bo-lang-xian-yong-fa/</a>
+                    <a href="http://summerpen.github.io/2021/08/25/vue-less-zhong-bo-lang-xian-yong-fa/">http://summerpen.github.io/2021/08/25/vue-less-zhong-bo-lang-xian-yong-fa/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -625,7 +644,7 @@
                 <i class="far fa-dot-circle"></i>&nbsp;本篇
             </div>
             <div class="card">
-                <a href="/2021/08/25/less-zhong-bo-lang-xian-yong-fa/">
+                <a href="/2021/08/25/vue-less-zhong-bo-lang-xian-yong-fa/">
                     <div class="card-image">
                         
                         
